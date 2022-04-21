@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import axios from "axios"
 import Iframe from "react-iframe"
 
-const IndexPage = () => {
+const Feedback = () => {
   //const name = "Operario"
 
-  const feedbck = "No"
-  //const candidatura = "Repartidor"
+  const feedbck = "Sí"
 
   const [loading, setLoading] = useState(true)
   const [session, setSession] = useState("no sesion")
@@ -26,7 +27,7 @@ const IndexPage = () => {
     try {
       const getBotId = await axios({
         method: "get", //you can set what request you want to be
-        url: "https://api.33bot.io/v1/conversation/chat/6231fcef33a63700098212b5/bots",
+        url: "https://api.33bot.io/v1/conversation/chat/5fda29f1481e91000916689c/bots",
         headers,
       })
       //const bot_id = getBotId.data[0].id
@@ -50,8 +51,8 @@ const IndexPage = () => {
           session_id: someSession,
           global_vars: {
             // candidatura_seleccionada: {
-            //   text: candidatura,
-            //   value: candidatura,
+            //   text: name,
+            //   value: name,
             // },
             feedback: {
               text: feedbck,
@@ -73,13 +74,13 @@ const IndexPage = () => {
 
   return (
     <>
-      <Seo title="Graduate 2022" />
+      <Seo title="Trabaja en Aquaservice" />
       <div style={{ width: "100vw", height: "100vh" }}>
         {loading ? (
           <div>Cargando...</div>
         ) : (
           <Iframe
-            url={`https://chat.33bot.io/623d996cc9be8f0009eef0d6?r=web&close=0&session=${session}`}
+            url={`https://chat.33bot.io/5fe1b0c80008060de6?r=web&close=0&session=${session}`}
             width="100%"
             height="100%"
             allow="camera;microphone"
@@ -91,4 +92,4 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage
+export default Feedback
