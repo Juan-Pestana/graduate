@@ -4,12 +4,21 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import axios from "axios"
 import Iframe from "react-iframe"
+import * as queryString from "query-string"
 
-const IndexPage = () => {
+const IndexPage = ({ location }) => {
   //const name = "Operario"
 
   const feedbck = "No"
   //const candidatura = "Repartidor"
+
+  const isBrowser = typeof window !== "undefined"
+  let { sid } = queryString.parse(location.search)
+
+  let lsSession =
+    isBrowser && localStorage.getItem("session")
+      ? localStorage.getItem("session")
+      : null
 
   const [loading, setLoading] = useState(true)
   const [session, setSession] = useState("no sesion")
@@ -19,7 +28,12 @@ const IndexPage = () => {
   }
 
   useEffect(() => {
-    getBotId()
+    if (sid) {
+      setSession(sid)
+      setLoading(false)
+    } else {
+      getBotId()
+    }
   }, [])
 
   const getBotId = async () => {
@@ -49,10 +63,10 @@ const IndexPage = () => {
         data: {
           session_id: someSession,
           global_vars: {
-            // candidatura_seleccionada: {
-            //   text: candidatura,
-            //   value: candidatura,
-            // },
+            bot_url: {
+              text: `${location.origin}${location.pathname}?sid=${someSession}`,
+              value: `${location.origin}${location.pathname}?sid=${someSession}`,
+            },
             feedback: {
               text: feedbck,
               value: feedbck,
