@@ -64,8 +64,8 @@ const IndexPage = ({ location }) => {
           session_id: someSession,
           global_vars: {
             bot_url: {
-              text: `${location.origin}${location.pathname}?sid=${someSession}`,
-              value: `${location.origin}${location.pathname}?sid=${someSession}`,
+              text: `${location.origin}${location.pathname}`,
+              value: `${location.origin}${location.pathname}`,
             },
             feedback: {
               text: feedbck,
