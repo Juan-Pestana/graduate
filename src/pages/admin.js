@@ -9,7 +9,7 @@ import * as queryString from "query-string"
 const IndexPage = ({ location }) => {
   //const name = "Operario"
 
-  const admin = "No"
+  const admin = "Sí"
   //const candidatura = "Repartidor"
 
   const isBrowser = typeof window !== "undefined"
